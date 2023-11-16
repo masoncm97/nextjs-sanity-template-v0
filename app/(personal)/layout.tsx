@@ -3,7 +3,6 @@ import 'styles/index.css'
 import { Footer } from 'components/global/Footer'
 import { Navbar } from 'components/global/Navbar'
 import { PreviewBanner } from 'components/preview/PreviewBanner'
-import IntroTemplate from 'intro-template'
 import { token } from 'lib/sanity.fetch'
 import dynamic from 'next/dynamic'
 import { draftMode } from 'next/headers'
@@ -32,7 +31,6 @@ export default async function IndexRoute({
       <Suspense>
         <Footer />
       </Suspense>
-      <IntroTemplate />
     </div>
   )
 
