@@ -1,7 +1,7 @@
 import { Card } from '@sanity/ui'
 import { height, OpenGraphImage, width } from 'components/OpenGraphImage'
 import { createIntlSegmenterPolyfill } from 'intl-segmenter-polyfill'
-import type { Settings } from 'lib-website/sanity.queries'
+import type { Settings } from 'lib/sanity.queries'
 import satori, { type SatoriOptions } from 'satori'
 import styled from 'styled-components'
 import useSWR from 'swr/immutable'
@@ -9,7 +9,6 @@ import useSWR from 'swr/immutable'
 async function init(): Promise<SatoriOptions['fonts']> {
   if (!globalThis?.Intl?.Segmenter) {
     console.debug('Polyfilling Intl.Segmenter')
-    //@ts-expect-error
     globalThis.Intl = globalThis.Intl || {}
     //@ts-expect-error
     globalThis.Intl.Segmenter = await createIntlSegmenterPolyfill(
@@ -54,7 +53,7 @@ export default function OpenGraphPreview(props: Settings['ogImage']) {
 
   // Also handle the satori render call in SWR to enable caching and only re-render when the title changes or fonts hot reload
   const { data: __html } = useSWR(
-    [props.title, fonts satisfies SatoriOptions['fonts']],
+    [props?.title, fonts satisfies SatoriOptions['fonts']],
     ([title, fonts]) => {
       return satori(<OpenGraphImage title={title || ''} />, {
         width,

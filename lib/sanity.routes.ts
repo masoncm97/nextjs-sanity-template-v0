@@ -1,4 +1,4 @@
-import { sanityFetch } from 'lib-website/sanity.fetch'
+import { sanityFetch } from 'lib/sanity.fetch'
 import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity.api'
 import {
   indexQuery,

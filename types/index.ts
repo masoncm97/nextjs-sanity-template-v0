@@ -76,7 +76,7 @@ export interface PostPayload {
   coverImage?: any
   date?: string
   excerpt?: string
-  author?: Author
+  author?: AuthorPayload
   slug?: string
   content?: any
 }

@@ -13,27 +13,27 @@ const PreviewIndexPage = lazy(() => import('components/PreviewIndexPage'))
 
 interface PageData {
   posts: PostPayload[]
-  settings: Settings
+  settings: SettingsPayload
   preview: boolean
   token: string | null
 }
 
-export const generateMetadata = async (ctx): Promise<PageData> => {
-  const { preview = false, previewData = {} } = ctx
-  const [settings, posts = []] = await Promise.all([
-    getSettings(),
-    getAllPosts(),
-  ])
-  console.log('shit')
-  console.log('posts', posts)
+// export const generateMetadata = async (ctx): Promise<PageData> => {
+//   const { preview = false, previewData = {} } = ctx
+//   const [settings, posts = []] = await Promise.all([
+//     getSettings(),
+//     getAllPosts(),
+//   ])
+//   console.log('shit')
+//   console.log('posts', posts)
 
-  // return defineMetadata({
-  //   posts,
-  //   settings,
-  //   preview,
-  //   token: previewData.token ?? null,
-  // })
-}
+//   return defineMetadata({
+//     posts,
+//     settings,
+//     preview,
+//     token: previewData.token ?? null,
+//   })
+// }
 
 export default async function Page() {
   const [settings, posts = []] = await Promise.all([
