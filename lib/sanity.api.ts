@@ -31,3 +31,10 @@ function assertValue<T>(v: T | undefined, errorMessage: string): T {
 
   return v
 }
+
+// useCdn == true gives fast, cheap responses using a globally distributed cache.
+// It makes sense to use the CDN if the GROQ webhook outlined in `pages/api/revalidate.ts` isn't setup yet.
+// With the hook setup though it's more important to newer return stale data since the request count is so low, especially after removing the `export const revalidate = 1` statements in `page.tsx` files.
+export const useCdn = process.env.SANITY_REVALIDATE_SECRET
+  ? false
+  : process.env.NODE_ENV === 'production'

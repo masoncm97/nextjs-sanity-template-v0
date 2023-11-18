@@ -1,11 +1,10 @@
-import { previewSecretId } from 'lib/sanity.api'
-import { client } from 'lib/sanity.client'
-import { token } from 'lib/sanity.fetch'
-import { resolveHref } from 'lib/sanity.links'
+import { previewSecretId } from 'lib-website/sanity.api'
+import { client } from 'lib-website/sanity.client'
+import { token } from 'lib-website/sanity.fetch'
+import { resolveHref } from 'lib-website/sanity.links'
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { isValidSecret } from 'sanity-plugin-iframe-pane/is-valid-secret'
-
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)

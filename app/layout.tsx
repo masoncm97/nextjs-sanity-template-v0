@@ -1,6 +1,11 @@
 import 'tailwindcss/tailwind.css'
 
 import { IBM_Plex_Mono, Inter, PT_Serif } from 'next/font/google'
+import dynamic from 'next/dynamic'
+import { draftMode } from 'next/headers'
+import { token } from 'lib/sanity.fetch'
+
+const PreviewProvider = dynamic(() => import('components/PreviewProvider'))
 
 const serif = PT_Serif({
   variable: '--font-serif',
@@ -30,7 +35,13 @@ export default async function RootLayout({
       lang="en"
       className={`${mono.variable} ${sans.variable} ${serif.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {draftMode().isEnabled ? (
+          <PreviewProvider token={token}>{children}</PreviewProvider>
+        ) : (
+          children
+        )}
+      </body>
     </html>
   )
 }
